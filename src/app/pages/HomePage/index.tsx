@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { NavBar } from 'app/components/NavBar';
-import { Masthead } from './Masthead';
-import { Features } from './Features';
-import { PageWrapper } from 'app/components/PageWrapper';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTodos } from './slice/selectors';
+import { useTodosSlice } from './slice';
 
 export function HomePage() {
+  const { actions } = useTodosSlice();
+  const { isLoading, todos } = useSelector(selectTodos);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(actions.getTodos());
+  }, []);
   return (
     <>
-      <Helmet>
-        <title>Home Page</title>
-        <meta
-          name="description"
-          content="A React Boilerplate application homepage"
-        />
-      </Helmet>
-      <NavBar />
-      <PageWrapper>
-        <Masthead />
-        <Features />
-      </PageWrapper>
+      {isLoading && <p>Loading!!!!</p>}
+      {!isLoading &&
+        todos &&
+        todos.map(item => {
+          return <p> {item.title}</p>;
+        })}
     </>
   );
 }
