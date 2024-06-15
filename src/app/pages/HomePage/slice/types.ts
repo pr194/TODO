@@ -1,12 +1,15 @@
-/* --- STATE --- */
-export interface TodosState {
-  isLoading: boolean;
-  todos: Todo[] | null;
-}
-
 export interface Todo {
   userId: number;
   id: number;
   title: string;
-  completed: boolean;
+  body: string;
+}
+
+export interface TodoState {
+  isLoading: boolean;
+  todos: Todo[];
+}
+
+export interface RootState {
+  todo: TodoState;
 }

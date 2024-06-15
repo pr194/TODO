@@ -1,4 +1,4 @@
-import { TodosState } from 'app/pages/HomePage/slice/types';
+import { TodoState } from 'app/pages/HomePage/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -6,6 +6,6 @@ import { TodosState } from 'app/pages/HomePage/slice/types';
   You have to declare them here manually
 */
 export interface RootState {
-  todos?: TodosState;
+  todos?: TodoState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }
